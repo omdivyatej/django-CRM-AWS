@@ -1,0 +1,32 @@
+{% extends 'accounts/auth.html' %} {% block form_content %}
+<h5>Login</h5>
+<p>
+  Don't have an account? <a href={% url 'register' %}>Create Your Account</a> It takes less than
+  a minute
+</p>
+{% for message in messages %}
+<p style="color: red; background-color: black">{{message}}</p>
+{% endfor %}
+
+<form method="POST" action="">
+  {% csrf_token %}
+  <input
+    type="text"
+    name="username"
+    placeholder="Enter your username"
+  />
+  <input
+    type="password"
+    name="password"
+    placeholder="Enter your password"
+  />
+  <input type="submit" name="Login" />
+</form>
+
+<div class="remember-me--forget-password" >
+ 
+  <p><a href={% url 'reset_password' %}> forget password?</a></p>
+</div>
+<br />
+<button>Register</button> 
+ {% endblock form_content %}

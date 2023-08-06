@@ -1,0 +1,48 @@
+Queries:
+* To exeucte in shell
+python manage.py shell
+from accounts.models import *
+customers=Customer.objects.all()
+customers.count()
+->2
+****
+first import models
+from accounts.models import models
+// . objects plural "s"
+customers=Customer.objects.all()
+Customer.objects.first()
+
+ customerByName= Customer.objects.get(name="Om")
+ customerById=Customer.objects.get(id=4)
+ 
+ // Get child which are related, in our eg. "Order" contains the parent "Customers" and "Products". 
+ so, get the customer object first, eg. x= Customers.objects.first() and then use this format. 
+ x.childNameInLowercase_set.all()
+
+ Here,
+ firstcustomer.order_set.all()
+ >><QuerySet [<Order: Order object (1)>, <Order: Order object (2)>]>
+
+productFirst=Products.objects.first()
+productFirst.order_set.all()
+>><QuerySet [<Order: Order object (1)>]>
+
+# From child model(which contains another model) to a parent(the model included in the child) model 
+Get the name of the guy and product who had the first order.
+orderFirst= Order.objects.first()
+orderFirst.customer.name
+orderFirst.product.name // Column name 'product' should match with column name defined in the model.py field
+//class Order(models.Model):
+    ....
+    customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
+    
+    product = models.ForeignKey(Products, null=True, on_delete=models.SET_NULL)
+    .....
+
+ie. why orderFirst.customer.name
+        orderFirst.product.name
+   
+
+#Filter 
+products = Product.objects.filter(category="OUT DOOR")
+filtering condition is case sensitive. 

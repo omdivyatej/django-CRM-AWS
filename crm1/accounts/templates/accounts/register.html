@@ -1,0 +1,44 @@
+{% extends 'accounts/auth.html' %} 
+{% block form_content %}
+<h5>Register</h5>
+<p>Already have an account? <a href={% url 'login' %}>Log in to Your Account</a></p>
+<form action="" method="POST" >
+  {% csrf_token %}
+  <input
+    type="text"
+    name="{{ form.username.name }}"
+    placeholder="Enter your username"
+  />
+  <input
+    type="email"
+    name="{{ form.email.name }}"
+    placeholder="Enter your email"
+  />
+  <input
+    type="password"
+    name="{{ form.password1.name }}"
+    placeholder="Enter your password"
+  />
+  <input
+    type="password"
+    name="{{ form.password2.name }}"
+    placeholder="Confirm your password"
+  />
+  <input type="submit" name="Register" >
+  <br>
+  {{ form.errors }}
+ 
+
+{% comment %} <div class="remember-me--forget-password">
+  <label>
+    <input type="checkbox" name="item" checked />   
+    causing error name="item" since form is only mapped for useername,eml,pw1,pw1 but not "item", this causing error due to unidentiifed field
+    <span class="text-checkbox">Remember me</span>
+  </label>
+  <p>forget password?</p>
+</div>
+<br /> 
+<button>Register</button> {% endcomment %}
+</form>
+
+{% endblock form_content %}

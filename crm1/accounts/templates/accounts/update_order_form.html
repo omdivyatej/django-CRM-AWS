@@ -1,0 +1,15 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+{% comment %} 
+Now, form action="" coz we need the user to submit the data to the same page, then how do we redirect the 
+user? using redirect().
+{% endcomment %}
+<form action="" method="POST">
+    {% csrf_token %}      
+    {{form}} 
+    <input type="Submit" name="Submit" />
+</form>
+
+{% endblock content %}

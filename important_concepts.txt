@@ -1,0 +1,44 @@
+To get user information after login:
+ <p>Hello, {{request.user}}</p> 
+ 
+  name="{{form.username.name}}" for register while name="username" for login, becuse we are using
+  Django class UserCreationForm and everything else is handled automatically while in login we are not
+  using any Django form, so we handle it manually. 
+  Thats' why its request.POST only for register, while we need to extract username and pw for login.
+
+  Why midddleware is best?
+  When maintanance required, users can be directly routed to maintainance page rather tahn using decorator 
+  Global Application: Middleware operates at a global level and can be applied to all views across the entire Django application. This means that access control logic implemented in middleware will be consistently applied to all views, ensuring a uniform security layer throughout the application. On the other hand, decorators need to be individually added to each view function, which can be prone to oversight and human error.
+Also,
+Centralized Logic: Middleware allows you to centralize your access control logic in one place. This can make it easier to manage and maintain the security aspects of your application. You can implement complex access control rules in middleware, and any changes or updates can be done in one location.
+
+Decoupled from Views: Middleware operates before views are executed, which means it can be used to enforce access control even before the view function is called. In contrast, decorators are applied after the view function is defined, which means the view function may still execute some code before access control is enforced. Middleware, therefore, provides an extra layer of security that is decoupled from the view logic.
+
+Exemptions and Dynamic Logic: Middleware allows for fine-grained control over exemptions from security rules based on specific URL patterns or other request attributes. This flexibility enables you to implement complex security logic that can change based on the request context. With decorators, you might need to define multiple decorators with different conditions to achieve similar flexibility.
+
+Chaining Middleware: In Django, you can chain multiple middleware classes together. This allows you to divide your access control logic into smaller reusable components. You can use one middleware for authentication, another for authorization, and so on. This modular approach makes it easier to manage and test different security aspects of your application.
+
+Middleware Order: Middleware allows you to control the order in which security checks are applied. You can prioritize your access control middleware to ensure that security checks are performed before other middleware and view functions execute. This helps in catching unauthorized access early in the request-response cycle.
+
+
+Profile pice upload:
+add image field to customer model, install pillow
+go to settings.py
+add the root directory where all the drama will take place.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+# print(MEDIA_ROOT) -> F:\Django CRM_13June\crm1\static/images 
+After this, go to admin panel and upload a pic, you would see that refelceted in static/images/
+
+Still the media url is not working? eg. go to localhost:8000/images/om_photo.jpg . It won't work. 
+We need to configure a bit more, attach with url pattern, in base urls.py
+
+MEDIA_ROOT is the place where images will be stored: absolute path + place you want to store. most the times storing and showing image path is same, it cn be different
+MEDIA_URL is the url pattern for showing images : localhost/images/ -> '/images/' ...media url
+
+ie ;. why to serve static files we need to use static(), and add the media_url and MEDIA_ROOT info
+so last step. 
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+Watch this video for setup: https://www.youtube.com/watch?v=0A-5ITILrMA  pgadmin, rds.
+You may need to chnage pg_hba.conf file 

@@ -1,0 +1,23 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+{% comment %} 
+Now, form action="" coz we need the user to submit the data to the same page, then how do we redirect the 
+user? using redirect(). Also, createOrder(request), here we can check we whether the request is POST or GET,
+if GET, then simply render page, else use the data.
+{% endcomment %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ formset.management_form }} <!--
+      We need to have this for all data(combined into a set), go individually, otherwise processing issues 
+    -->
+      {% for form in formset %}
+        {{form}}
+        <hr>
+        {% endfor %}
+    
+  <input type="Submit" name="Submit" />
+</form>
+
+{% endblock content %}

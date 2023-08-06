@@ -1,0 +1,31 @@
+python manage.py migrate  
+python manage.py createsuperuser
+/*
+Username (leave blank to use 'cvroy'): omdivyatej
+Email address: ohmbrock42@gmail.com
+Password: Omdiv@123
+Password (again):Omdiv@123
+Superuser created successfully.
+*/
+Login django admin
+
+Create a Model
+Register with admin to see visually on the admin panel
+Make migrations,migrate
+modify Model o/p in form of string for better readibility
+
+    def __str__(self) -> str:
+        return self.name ( or self.phone,self.email, whichever field you want to see as a a representation of entire row whenever you are 
+        skimming over the entire data) 
+ 
+For choices, 
+ CATEGORY = (
+        ('Indoor', 'Indoor'),
+        ('Out Door', 'Out Door'),
+    )
+    category = models.CharField(max_length=200, null=True, choices=CATEGORY)
+
+
+customer = models.ForeignKey(Customer,on_delete=models.SET_NULL()) , on_delete means if Customer obj is deleted or if
+customer account is closed, what is supposed to happen to the orders? Do not delete the order, but make the customer 
+field as null. 

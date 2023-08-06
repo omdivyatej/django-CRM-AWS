@@ -1,0 +1,44 @@
+1. "Template does not exist"
+ return render(request,"studentapp/student_home.html",{'students':a})
+Make sure there is "stu.... ", not 'stu....'
+2. When using forms, error of NoReverseMismatch
+you need to defind name in urls as well, mandatory.
+For, 
+<form method="POST" action="{% url 'add_student' %}">
+
+path('add_student',views.add_student) : this will not work
+<form method="POST" action="{% url 'add_student' %}"> this will work, hence name is required.
+
+if you use name, it is better any day. URL could be somethinglike student.add_student
+Now, if you change the url someday, it will still get access. 
+Now, if you had used student/add_student hrdcoded value for link, you would have to change every link in the future.
+
+3. For forms, you have to make forms.py with the Meta class to model the html form. BUt in input type in HTML code, ensure name="..  "  is equal to the forms.py lable columns.
+
+Eg.
+<input type="text" name="Name">
+    <input type="number" name="Marks">
+    <input type="submit"></button>
+
+class AddStudentForm(forms.ModelForm):
+    class Meta:
+        model= StudentMembers
+        fields= ['name','marks']
+
+
+This wont work because field names are 'name','marks', wherease html names are "Name", "MArks" . Capital N,M instead of n,m
+
+<input type="text" name="name">
+    <input type="number" name="marks">
+    <input type="submit"></button>
+
+class AddStudentForm(forms.ModelForm):
+    class Meta:
+        model= StudentMembers
+        fields= ['name','marks']
+
+This will work
+
+3. LOGIN_REDIRECT_URL ="/home"
+LOGOUT_REDIRECT_URL= "/login"  
+Needs to be there is setting.py file mandatory 

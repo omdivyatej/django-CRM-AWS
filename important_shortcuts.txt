@@ -1,0 +1,3 @@
+select all similar words at once vs code: CTRL + SHIFT + L
+CTRL+Q, move to explorer tab
+Ctrl+K, move to Terminal

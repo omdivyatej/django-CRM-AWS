@@ -1,0 +1,43 @@
+{% load static %}
+
+<head>
+    <title>CRM AUTH</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/auth.css' %}" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+
+</head>
+
+<body>
+    <div class="box-form">
+        <div class="left">
+            <div class="overlay">
+                <h1>CRM Django.</h1>
+                <br>
+                <p><b>
+                        This is a custom Django CRM demo. It includes various features using CRUD operations,
+                        better code practices,and advanced operations. Made by Om Divyatej.
+                        <b>
+                </p>
+                {% comment %} <span>
+                    <p>login with social media</p>
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Login with
+                        Twitter</a>
+                </span> {% endcomment %}
+            </div>
+        </div>
+        <div class="right">
+            {% block form_content %}
+            {% endblock form_content %}
+            <br><br>            
+        </div>
+    </div>
+    </div>
+    <br><br>
+
+
+    </div>
+
+
+</body>
