@@ -87,11 +87,11 @@ DATABASES = {
     # },
      'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'database_demo_django', # DB-Name in Amazon RDS not, DB instance id
-        'USER':'omdivyatej',
-        'PASSWORD':'rootroot',     #CASE_SENSITIVE - "PASSWORD" or anything
-        'HOST':'database-demo-django.cbpaz4b8hpb4.ap-south-1.rds.amazonaws.com',
-        'PORT': "5432",
+        'NAME': '*', # DB-Name in Amazon RDS not, DB instance id
+        'USER':'*',
+        'PASSWORD':'*',     #CASE_SENSITIVE - "PASSWORD" or anything
+        'HOST':'*',
+        'PORT': "*",
     }
 }
 
